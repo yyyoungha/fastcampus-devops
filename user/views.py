@@ -24,7 +24,7 @@ def login(request):
     if request.method == 'POST':
         try:
             name = request.POST['name']
-            User.objects.all().get(name=name)
+            request.session['user_id'] = User.objects.all().get(name=name).id
             return render(request, 'user/success.html')
         except:
             return render(request, 'user/fail.html')
